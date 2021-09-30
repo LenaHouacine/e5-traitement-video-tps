@@ -1,0 +1,24 @@
+char key = static_cast<char>(cv::waitKey(0));
+
+if ('Q' == key) { // left arrow
+                angle += 90;
+                cv::Point2f pt(img.cols / 2., img.rows / 2.);
+                cv::Mat r = getRotationMatrix2D(pt, angle, 1.0);
+                cv::warpAffine(img, img1, r, cv::Size(img.cols, img.rows));
+                cv::imshow("image", img1);
+                //cv::waitKey(0);
+            }
+
+            if ('S' == key) { // right arrow
+                angle -= 90;
+                cv::Point2f pt(img.cols / 2., img.rows / 2.);
+                cv::Mat r = getRotationMatrix2D(pt, angle, 1.0);
+                cv::warpAffine(img, img1, r, cv::Size(img.cols, img.rows));
+                cv::imshow("image", img1);
+                //cv::waitKey(0);
+            }
+
+            if ('s' == key) {
+                imwrite("result.jpg", img1);
+                std::cout << "Save image" << std::endl;
+            }
